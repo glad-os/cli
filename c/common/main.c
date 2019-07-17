@@ -16,9 +16,9 @@
 
 
 
-#include "stdlib/include/stdio.h"
-#include "stdlib/include/kernel.h"
-#include "stdlib/include/swis.h"
+#include <stdint.h>
+#include "stdio.h"
+#include "swi.h"
 
 
 
@@ -69,7 +69,7 @@ void execute_command( void ) {
     input[i]   = 0x00;
 
     struct _kernel_regs in,out;
-    in.r[0] = (unsigned int) input;
+    in.r[0] = (uintptr_t) input;
     _kernel_swi( OS_ProcessBegin, &in, &out );
 	sprintf( "(and now CLI can continue)\n" );
 
