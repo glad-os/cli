@@ -18,13 +18,9 @@
 #ifndef STDIO_H
 #define STDIO_H
 
-	// sprintf
-	int sprintf( char *s );
-
-	// variations on a theme for simplicity
+	unsigned int sprintf( char *str );
 	int sprintf_i( char *s, int i );
-
-    int getchar( void );
-    char *gets( char *s );
+        int getchar( void );
+        char *gets( char *s );
 
 #endif /*STDIO_H*/

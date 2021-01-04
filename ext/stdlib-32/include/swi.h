@@ -33,21 +33,10 @@
 	#define		OS_PrintChar				0x00000006
 	#define		OS_PrintString				0x00000007
 	#define		OS_ReadVideoVariables			0x00000008
-	#define		OS_ReadC				0x00000009
+	#define		OS_ReadC                                 0x00000009
 	#define		OS_ProcessBegin				0x0000000a
 	#define		OS_ProcessExit				0x0000000b
 
-	// up to a maximum of 4 register values can be passed in/out of an SWI using this structure
-	struct _kernel_regs {
-		uintptr_t r[ 4 ];
-	};
 
-	// for now, SWIs can take data in but don't yet get to return anything to the caller
-	void _kernel_swi( unsigned int swi_number, struct _kernel_regs *in, struct _kernel_regs *out );
-
-	// macro to invoke the SWI instruction [http://www.ethernut.de/en/documents/arm-inline-asm.html] -> asm(code : output operand list : input operand list : clobber list);
-	// call SWI_INVOKE which allows SWI_ string constants to be expanded prior to then being injected into the SWI_GENERATE_ASM macro.
-	#define SWI( n,p_in,p_out ) SWI_GENERATE_ASM(n,p_in,p_out)
-	#define SWI_GENERATE_ASM( NR, PTR_IN, PTR_OUT ) __asm__ __volatile__ ( "MOV r0, %[in]\n\tMOV r1, %[out]\n\tSWI " #NR "\n\t" : : [in] "r" ( PTR_IN ), [out] "r" ( PTR_OUT ) );
 
 #endif /*SWI_H*/

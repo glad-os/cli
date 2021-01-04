@@ -27,7 +27,6 @@ void execute_command( void );
 
 
 
-struct _kernel_regs regs;
 char input[255];
 
 
@@ -41,7 +40,7 @@ int main( int argc, char **argv ) {
 
     }
 
-	return 0;
+    return 0;
 
 }
 
@@ -49,7 +48,16 @@ int main( int argc, char **argv ) {
 
 void request_command( void ) {
 
-    sprintf( "*" );
+    unsigned int    result;
+    char            r[32];
+
+    result = sprintf( "*" );
+
+    // test the APCS...
+    sprintf_i( (char *)r, result );
+    sprintf( r );
+    while ( 1 ) { }
+
     gets( input );
 
 }
@@ -58,6 +66,7 @@ void request_command( void ) {
 
 void execute_command( void ) {
 
+    /*
     int i = 0;
     while ( input[i] )
         i++;
@@ -72,6 +81,6 @@ void execute_command( void ) {
     in.r[0] = (uintptr_t) input;
     _kernel_swi( OS_ProcessBegin, &in, &out );
 	sprintf( "(and now CLI can continue)\n" );
-
+        */
 }
 
