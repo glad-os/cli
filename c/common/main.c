@@ -51,12 +51,11 @@ void request_command( void ) {
     unsigned int    result;
     char            r[32];
 
+    // test the APCS works ("result" should carry a value!)
+    result = sprintf( ">" );
     result = sprintf( "*" );
-
-    // test the APCS...
     sprintf_i( (char *)r, result );
     sprintf( r );
-    while ( 1 ) { }
 
     gets( input );
 

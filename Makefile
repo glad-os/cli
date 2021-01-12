@@ -104,7 +104,7 @@ clean:
 # cli
 
 CLI_HOME			= .
-CLI_INCLUDES		    	= -I $(CLI_HOME)/ext/stdlib-$(ISA_TYPE)/include
+CLI_INCLUDES		    	= -I $(CLI_HOME)/../stdlib/c/common/include
 
 CLI_FLAGS_C	         	= $(FLAGS_C) $(CLI_INCLUDES)
 CLI_FILES_C     		= $(patsubst %.c,%.o,$(shell find . -type f -name '*.c'))
@@ -114,7 +114,7 @@ cli-64: $(CLI_FILES_C) $(STDLIB_FILES_C) cli
 
 cli: cli_c
 
-	$(LD)  	linker.ld -o cli.elf c/common/main.o ext/stdlib-$(ISA_TYPE)/stdlib-$(ISA_TYPE).a
+	$(LD)  	linker.ld -o cli.elf c/common/main.o ../stdlib/stdlib-$(ISA_TYPE).a
 
 	$(OBJCOPY) -I elf32-little -O binary --strip-debug --strip-unneeded --verbose cli.elf cli.bin 
 	$(OBJCOPY) cli.elf -O ihex cli.hex
