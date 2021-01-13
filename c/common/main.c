@@ -18,6 +18,7 @@
 
 #include <stdint.h>
 #include "stdio.h"
+#include "stdlib.h"
 #include "swi.h"
 
 
@@ -52,10 +53,9 @@ void request_command( void ) {
     char            r[32];
 
     // test the APCS works ("result" should carry a value!)
-    result = sprintf( ">" );
     result = sprintf( "*" );
-    sprintf_i( (char *)r, result );
-    sprintf( r );
+    //sprintf_i( (char *)r, result );
+    //sprintf( r );
 
     gets( input );
 
@@ -65,7 +65,6 @@ void request_command( void ) {
 
 void execute_command( void ) {
 
-    /*
     int i = 0;
     while ( input[i] )
         i++;
@@ -76,10 +75,8 @@ void execute_command( void ) {
     input[i++] = 'N';
     input[i]   = 0x00;
 
-    struct _kernel_regs in,out;
-    in.r[0] = (uintptr_t) input;
-    _kernel_swi( OS_ProcessBegin, &in, &out );
-	sprintf( "(and now CLI can continue)\n" );
-        */
+    fork( input );
+    sprintf( "(and now CLI can continue)\n" );
+
 }
 
