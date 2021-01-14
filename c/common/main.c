@@ -53,9 +53,9 @@ void request_command( void ) {
     char            r[32];
 
     // test the APCS works ("result" should carry a value!)
-    result = sprintf( "*" );
+    result = printf( "*" );
     //sprintf_i( (char *)r, result );
-    //sprintf( r );
+    //printf( r );
 
     gets( input );
 
@@ -76,7 +76,7 @@ void execute_command( void ) {
     input[i]   = 0x00;
 
     fork( input );
-    sprintf( "(and now CLI can continue)\n" );
+    printf( "(and now CLI can continue)\n" );
 
 }
 
